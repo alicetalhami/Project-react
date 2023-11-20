@@ -1,4 +1,4 @@
-const PageHeader = ({ title , description}) => {
+const PageHeader = ({ title , description }) => {
 
     return (
         <>
@@ -8,9 +8,12 @@ const PageHeader = ({ title , description}) => {
             </div>
         </div>
 
+        {description && (
         <div className="row mt-2">
-            <div className="col-12">{description}</div>
+         <div className="col-12">{description}</div>
         </div>
+
+         )}
         </>
     );
 };
