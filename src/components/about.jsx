@@ -7,7 +7,7 @@ const About = () => {
       title={
         <> 
         {" "}
-        About Real <i className="bi bi-card-heading"></i>
+       About Bcard <i className="bi bi-card-heading"></i>
         </>
       }
       
