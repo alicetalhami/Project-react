@@ -10,6 +10,7 @@ const SignUp = ( ) => {
             name: "",
             password: "",
         },
+        
         onSubmit(values) {
 
         },
@@ -29,8 +30,26 @@ const SignUp = ( ) => {
 
 
         <form>
-            <Input name="email" label="email" required  />
+            <Input 
+            {...from.getFieldProps("email")}
+            type="email" 
+            label="email" 
+            required  
+            />
             
+            <Input 
+            {...from.getFieldProps("name")}
+            type="text" 
+            label="Name" 
+            required  
+            />
+
+             <Input 
+            {...from.getFieldProps("password")}
+            type="text" 
+            label="Password" 
+            required  
+            />
             
          
         </form>
