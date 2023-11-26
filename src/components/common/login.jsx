@@ -4,7 +4,7 @@ import Input from "./input";
 import { useFormik } from "formik";
 
 
-const SignIn = ( ) => {
+const Login = ( ) => {
     const from = useFormik({
         validateOnMount: true,
         initialValues: {
@@ -46,8 +46,8 @@ const SignIn = ( ) => {
 
     return (
        <>
-        <PageHeader title="Sign In"
-        description="sign into you're account <3"
+        <PageHeader title="Login"
+        description="login into you're account <3"
         />
 
 
@@ -80,4 +80,4 @@ const SignIn = ( ) => {
 };
 
 
-export default SignIn;
+export default Login;
