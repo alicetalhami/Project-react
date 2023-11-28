@@ -7,6 +7,7 @@ import About from './components/about';
 import { Route, Routes } from 'react-router-dom';
 import SignUp from './components/common/signUp';
 import Login from './components/common/login';
+import httpService from './services/httpService';
 
 
 function App() {

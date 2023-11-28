@@ -30,7 +30,7 @@ const NavBar = () => {
             <li className="nav-item">
               <NavLink to="/my-card" className="nav-link"> My Cards</NavLink>
             </li>
-          </ul>
+          </ul> 
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
             <li className="nav-item">
