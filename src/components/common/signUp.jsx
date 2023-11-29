@@ -1,12 +1,18 @@
-import Joi from "joi";
-import PageHeader from "./PageHeader"
-import Input from "./input";
-import { Form, useFormik } from "formik";
 import { validateFormikUsingJoi } from "../../utils/validateFormikUsingJoi";
+import PageHeader from "./PageHeader";
+import Input from "./input";
 
+import usersService from "../../services/usersService";
+import { useNavigate } from "react-router-dom";
+
+import { useFormik } from "formik";
+import Joi from "joi";
+import { flatMap } from "lodash";
 
 
 const SignUp = ( ) => {
+ const navigate = useNavigate();
+
     const from = useFormik({
         validateOnMount: true,
         initialValues: {
@@ -25,13 +31,18 @@ const SignUp = ( ) => {
         }),
         
         onSubmit(values) {
+            usersService.createUser({ ...values, biz: false});
+            navigate("/sign-Up");
+
 
         },
     });
 
     return (
        <>
-        <PageHeader title="Sign Up" description="Open a new account for free <3" />
+        <PageHeader title="Sign Up" 
+        description="Open a new account for free <3" 
+        />
 
          <form onSubmit={from.handleSubmit}>
             <Input 
