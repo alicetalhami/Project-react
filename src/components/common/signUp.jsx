@@ -50,17 +50,9 @@ import { useState } from "react";
         description="Open a new account for free <3" 
         />
 
-         <form onSubmit={form.handleSubmit}>
+         <form onSubmit={form.handleSubmit}  >
             {serverError && <div className="alert alert-danger">{serverError}</div>}
             
-            <Input 
-            {...form.getFieldProps("email")}
-            type="email" 
-            label="email" 
-            required  
-            error={form.touched.email && form.errors.email}
-           
-            />
             
             <Input 
             {...form.getFieldProps("name")}
@@ -70,6 +62,23 @@ import { useState } from "react";
             error={form.touched.name && form.errors.name}
             />
 
+           <Input 
+            {...form.getFieldProps("middle name")}
+            type="text" 
+            label="Middle Name" 
+              
+            error={form.touched.name && form.errors.name}
+            />
+
+            <Input 
+            {...form.getFieldProps("email")}
+            type="email" 
+            label="email" 
+            required  
+            error={form.touched.email && form.errors.email}
+           
+            />
+
              <Input 
             {...form.getFieldProps("password")}
             type="text" 
@@ -77,6 +86,20 @@ import { useState } from "react";
             required  
             error={form.touched.password && form.errors.password}
             />
+
+           <Input 
+            {...form.getFieldProps("phone")}
+            type="text" 
+            label="Phone" 
+            required  
+            error={form.touched.phone && form.errors.phone}
+            />
+
+
+
+
+
+
 
             <div className="my-2">
                 <button disabled={!form.isValid} className="btn btn-primary">
