@@ -7,7 +7,7 @@ import { formToJSON } from "axios";
 
 
 const Login = ( ) => {
-    const from = useFormik({
+    const form = useFormik({
         validateOnMount: true,
         initialValues: {
             email: "",
@@ -36,26 +36,26 @@ const Login = ( ) => {
         />
 
 
-           <form onSubmit={from.handleSubmit}>
+           <form onSubmit={form.handleSubmit}>
             <Input 
-            {...from.getFieldProps("email")}
+            {...form.getFieldProps("email")}
             type="email" 
             label="email" 
             required  
-            error={from.touched.email && from.errors.email}
+            error={form.touched.email && form.errors.email}
             />
             
              <Input 
-            {...from.getFieldProps("password")}
+            {...form.getFieldProps("password")}
             type="text" 
             label="Password" 
             required  
-            error={from.touched.password && from.errors.password}
+            error={form.touched.password && form.errors.password}
             />
             
             <div className="my-2">
-                <button disabled={!from.isValid} className="btn btn-primary">
-                    Sign Up
+                <button disabled={!form.isValid} className="btn btn-primary">
+                    Login
 
                 </button>
             </div>

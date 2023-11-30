@@ -1,19 +1,21 @@
 import { validateFormikUsingJoi } from "../../utils/validateFormikUsingJoi";
-import PageHeader from "./PageHeader";
 import Input from "./input";
+import PageHeader from "./PageHeader";
+
 
 import usersService from "../../services/usersService";
 import { useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import Joi from "joi";
-import { flatMap } from "lodash";
+import { useState } from "react";
 
 
-const SignUp = ( ) => {
+ const SignUp = () => {
+ const [serverError, setServerError] = useState("");
  const navigate = useNavigate();
 
-    const from = useFormik({
+    const form = useFormik({
         validateOnMount: true,
         initialValues: {
             email: "",
@@ -29,12 +31,16 @@ const SignUp = ( ) => {
             name: Joi.string().min(6).max(1024).required(),
             password: Joi.string().min(6).max(1024).required(),
         }),
-        
-        onSubmit(values) {
-            usersService.createUser({ ...values, biz: false});
-            navigate("/sign-Up");
 
-
+           async onSubmit(values) {
+           try {
+            await usersService.createUser({ ...values, biz: false});
+            navigate("/sign-in");
+            } catch (err) {
+            if(err. response?.status === 400) {
+            setServerError(err.response.data);
+            }
+         }
         },
     });
 
@@ -44,34 +50,36 @@ const SignUp = ( ) => {
         description="Open a new account for free <3" 
         />
 
-         <form onSubmit={from.handleSubmit}>
+         <form onSubmit={form.handleSubmit}>
+            {serverError && <div className="alert alert-danger">{serverError}</div>}
+            
             <Input 
-            {...from.getFieldProps("email")}
+            {...form.getFieldProps("email")}
             type="email" 
             label="email" 
             required  
-            error={from.touched.email && from.errors.email}
+            error={form.touched.email && form.errors.email}
            
             />
             
             <Input 
-            {...from.getFieldProps("name")}
+            {...form.getFieldProps("name")}
             type="text" 
             label="Name" 
             required  
-            error={from.touched.name && from.errors.name}
+            error={form.touched.name && form.errors.name}
             />
 
              <Input 
-            {...from.getFieldProps("password")}
+            {...form.getFieldProps("password")}
             type="text" 
             label="Password" 
             required  
-            error={from.touched.password && from.errors.password}
+            error={form.touched.password && form.errors.password}
             />
 
             <div className="my-2">
-                <button disabled={!from.isValid} className="btn btn-primary">
+                <button disabled={!form.isValid} className="btn btn-primary">
                     Sign Up
 
                 </button>

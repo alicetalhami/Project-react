@@ -1,4 +1,5 @@
 import Joi from "joi";
+
 export function validateFormikUsingJoi(schemaObject) {
     return function validate(values) {
         const schema = Joi.object(schemaObject);
@@ -11,7 +12,7 @@ export function validateFormikUsingJoi(schemaObject) {
         const errors = {};
         for (const detail of error.details) {
             const key = detail.path[0];
-            error[key] = detail.message;
+            errors[key] = detail.message;
         }
 
         return errors;
