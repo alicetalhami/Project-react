@@ -34,7 +34,7 @@ const NavBar = () => {
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
             <li className="nav-item">
-              <NavLink to="/sign-in" className="nav-link">
+              <NavLink to="/Login" className="nav-link">
                 Login 
               </NavLink>
             </li>

@@ -2,7 +2,6 @@ import { validateFormikUsingJoi } from "../../utils/validateFormikUsingJoi";
 import Input from "./input";
 import PageHeader from "./PageHeader";
 
-
 import usersService from "../../services/usersService";
 import { useNavigate } from "react-router-dom";
 
@@ -11,8 +10,8 @@ import Joi from "joi";
 import { useState } from "react";
 
 
- const SignUp = () => {
- const [serverError, setServerError] = useState("");
+ const SignUp = ({onSubmit = () => {}, redirect}) => {
+    const [serverError, setServerError] = useState("");
  const navigate = useNavigate();
 
     const form = useFormik({
@@ -32,16 +31,18 @@ import { useState } from "react";
             password: Joi.string().min(6).max(1024).required(),
         }),
 
-           async onSubmit(values) {
-           try {
-            await usersService.createUser({ ...values, biz: false});
-            navigate("/sign-in");
-            } catch (err) {
-            if(err. response?.status === 400) {
-            setServerError(err.response.data);
-            }
-         }
-        },
+        async onSubmit(values) {
+            try {
+              await onSubmit({...values, biz: false});
+              if (redirect) {
+                navigate(redirect);
+              }
+          } catch (err) {
+             if(err. response?.status === 400) {
+             setServerError(err.response.data);
+             }
+          }
+         },
     });
 
     return (
@@ -62,14 +63,6 @@ import { useState } from "react";
             error={form.touched.name && form.errors.name}
             />
 
-           <Input 
-            {...form.getFieldProps("middle name")}
-            type="text" 
-            label="Middle Name" 
-              
-            error={form.touched.name && form.errors.name}
-            />
-
             <Input 
             {...form.getFieldProps("email")}
             type="email" 
@@ -86,18 +79,6 @@ import { useState } from "react";
             required  
             error={form.touched.password && form.errors.password}
             />
-
-           <Input 
-            {...form.getFieldProps("phone")}
-            type="text" 
-            label="Phone" 
-            required  
-            error={form.touched.phone && form.errors.phone}
-            />
-
-
-
-
 
 
 
