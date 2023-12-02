@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
-import PageHeader from "./common/PageHeader";
+
+import PageHeader from "./common/pageHeader";
+import Card from "./card";
+import { useMyCards } from "../hooks/useMyCards";
 
 const MyCards = () => {
+  const cards = useMyCards();
+
   return (
     <>
       <PageHeader
@@ -10,15 +15,18 @@ const MyCards = () => {
       />
 
       <div className="row">
-        <Link to="create-card">Create a New Card</Link>
+        <Link to="/create-card">Create a New Card</Link>
       </div>
 
       <div className="row">
-        <p>no cards...</p>
-        some cards
+        {!cards.length ? (
+          <p>no cards...</p>
+        ) : (
+          cards.map((card) => <Card card={card} key={card._id} />)
+        )}
       </div>
     </>
   );
 };
- 
+
 export default MyCards;

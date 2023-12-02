@@ -9,6 +9,9 @@ import Login from "./components/login";
 import SignOut from "./components/signout";
 import SignUpBiz from "./components/signUpBiz";
 import MyCards from "./components/myCards";
+import ProtectedRoute from "./components/common/protectedRoute";
+import FavCards from "./components/favCards";
+
 
 function App() {
   return (
@@ -20,13 +23,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/my-cards" element={<MyCards />} />
+          <Route path="/my-cards" element={
+           <ProtectedRoute>
+          <MyCards />
+          </ProtectedRoute>
+          } />
+          <Route path="/fav-cards" element={
+         <ProtectedRoute onlyBiz>
+          <FavCards />
+          </ProtectedRoute>
+
+          } />
           <Route path="/login" element={<Login redirect="/" />} />
           <Route path="/sign-up" element={<SignUp redirect="/login" />} />
-          <Route
-            path="/sign-up-biz"
-            element={<SignUpBiz redirect="/my-cards" />}
-          />
+          <Route path="/sign-up-biz"element={<SignUpBiz redirect="/my-cards" />}/>
           <Route path="/sign-out" element={<SignOut />} redirect="/" />
         </Routes>
       </main>
