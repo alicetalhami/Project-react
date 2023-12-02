@@ -11,11 +11,11 @@ import { useState } from "react";
 import { useAuth } from "../../contexts/auth.context";
 
 
- const SignUp = ({redirect}) => {
+ const SignUpBiz = ({redirect}) => {
     const [serverError, setServerError] = useState("");
  const navigate = useNavigate();
 
-  const { user, signUp } = useAuth();
+  const { user, signUp, login } = useAuth();
 
     const form = useFormik({
         validateOnMount: true,
@@ -36,7 +36,8 @@ import { useAuth } from "../../contexts/auth.context";
 
         async onSubmit(values) {
             try {
-              await signUp({...values, biz: false});
+              await signUp({...values, biz: true});
+              await login({email: values.email, password: values.password})
               if (redirect) {
                 navigate(redirect);
               }
@@ -54,8 +55,8 @@ import { useAuth } from "../../contexts/auth.context";
 
     return (
        <>
-        <PageHeader title="Sign Up" 
-        description="Open a new account for free <3" 
+        <PageHeader title="Sign Up Biz" 
+        description="Open a new Business account for free <3" 
         />
 
          <form onSubmit={form.handleSubmit}  >
@@ -101,4 +102,4 @@ import { useAuth } from "../../contexts/auth.context";
 };
 
 
-export default SignUp;
+export default SignUpBiz;

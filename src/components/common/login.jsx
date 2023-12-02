@@ -4,17 +4,19 @@ import PageHeader from "./PageHeader";
 
 
 import usersService from "../../services/usersService";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
+import { useAuth } from "../../contexts/auth.context";
 
 
-
- const Login = ({onSubmit = () => {}, redirect}) => {
+ const Login = ({redirect}) => {
  const [serverError, setServerError] = useState("");
  const navigate = useNavigate();
+
+ const {user, login} = useAuth();
 
     const form = useFormik({
         validateOnMount: true,
@@ -33,7 +35,7 @@ import { useState } from "react";
     
         async onSubmit(values) {
             try {
-              await onSubmit(values);
+              await login(values);
               if(redirect) {
                 navigate(redirect);
               }
@@ -44,6 +46,11 @@ import { useState } from "react";
           }
          },
     });
+
+    
+    if (user) {
+        return <Navigate to="/"/>;
+    }
 
     return (
        <>
