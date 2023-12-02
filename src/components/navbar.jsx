@@ -8,7 +8,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-sm navbar-light bg-light shadow-sm">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          Real<i className="bi bi-geo-fill"></i>App
+        Bcard<i className="bi bi-card-heading"></i>
         </Link>
         <button
           className="navbar-toggler"
@@ -45,8 +45,8 @@ const NavBar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <NavLink to="/sign-in" className="nav-link">
-                    Sign In
+                  <NavLink to="/login" className="nav-link">
+                   Login
                   </NavLink>
                 </li>
                 <li className="nav-item">

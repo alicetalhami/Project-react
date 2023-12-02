@@ -22,7 +22,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/my-cards" element={<MyCards />} />
           <Route path="/login" element={<Login redirect="/" />} />
-          <Route path="/sign-up" element={<SignUp redirect="/sign-in" />} />
+          <Route path="/sign-up" element={<SignUp redirect="/login" />} />
           <Route
             path="/sign-up-biz"
             element={<SignUpBiz redirect="/my-cards" />}
