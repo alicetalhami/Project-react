@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { useAuth } from "./contexts/auth.context";
 import SignOut from "./components/common/signout";
 import SignUpBiz from "./components/common/signUpBiz";
-import MyCards from "./components/common/mycards";
+import MyCards from "./components/common/myCards";
 
 
 function App() {
@@ -24,12 +24,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/my-cards" element={<MyCards />}></Route>
+          <Route path="/my-cards" element={<MyCards />} />
           <Route path="/Login" element={<Login redirect="/" />} />
           <Route path="/sign-up" element={<SignUp redirect="/login" />} />
           <Route
             path="/sign-up-biz"
-            element={<SignUpBiz redirect="/my-cards" />}
+            element={<SignUpBiz redirect="/my-cards"/>}
           />
 
           <Route path="/sign-out" element={<SignOut redirect="/" />}></Route>

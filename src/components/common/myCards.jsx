@@ -1,23 +1,24 @@
-import PageHeader from "./PageHeader"
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import PageHeader from "./PageHeader";
+
 
 const MyCards = () => {
     return (
         <>
         <PageHeader
         title="My Cards"
-        description="you're cards are in the list below"
+        description="your cards are in the list below"
         />
 
         <div className="row">
-            <link to="create-card">Create a New Card</link>
+        <Link to="create-card">Create a New Card</Link>
         </div>
 
         <div className="row">
-            <p>no <cards styleName=""></cards></p>
+            <p>no cards...</p>
+            some cards
         </div>
-    
-        </>
+        </>  
     );
 };
 
