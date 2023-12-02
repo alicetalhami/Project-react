@@ -1,17 +1,14 @@
-import { Link, NavLink, useAsyncValue } from "react-router-dom";
-import { useAuth } from "../../contexts/auth.context";
+import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/auth.context";
 
 const NavBar = () => {
   const { user } = useAuth();
 
   return (
-    <nav
-      className="navbar navbar-expand-sm navbar-light bg-light shadow-sm"
-      aria-label="Third navbar example"
-    >
+    <nav className="navbar navbar-expand-sm navbar-light bg-light shadow-sm">
       <div className="container">
-        <Link to="/" className="navbar-brand" href="#">
-          Bcard <i className="bi bi-card-heading"></i>
+        <Link to="/" className="navbar-brand">
+          Real<i className="bi bi-geo-fill"></i>App
         </Link>
         <button
           className="navbar-toggler"
@@ -29,12 +26,13 @@ const NavBar = () => {
                 About
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/my-cards" className="nav-link">
-                {" "}
-                My Cards
-              </NavLink>
-            </li>
+            {user?.biz && (
+              <li className="nav-item">
+                <NavLink to="/my-cards" className="nav-link">
+                  My Cards
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
@@ -47,8 +45,8 @@ const NavBar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <NavLink to="/Login" className="nav-link">
-                    Login
+                  <NavLink to="/sign-in" className="nav-link">
+                    Sign In
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -56,7 +54,6 @@ const NavBar = () => {
                     Sign Up
                   </NavLink>
                 </li>
-
                 <li className="nav-item">
                   <NavLink to="/sign-up-biz" className="nav-link">
                     Sign Up Biz

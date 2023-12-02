@@ -1,14 +1,14 @@
-import { validateFormikUsingJoi } from "../../utils/validateFormikUsingJoi";
-import Input from "./input";
-import PageHeader from "./PageHeader";
+import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
+import Input from "./common/input";
+import PageHeader from "./common/PageHeader";
 
-import usersService from "../../services/usersService";
+import usersService from "../services/usersService";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
-import { useAuth } from "../../contexts/auth.context";
+import { useAuth } from "../contexts/auth.context";
 
 const SignUpBiz = ({ redirect }) => {
   const [serverError, setServerError] = useState("");

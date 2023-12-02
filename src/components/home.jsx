@@ -1,4 +1,4 @@
-import PageHeader from "./PageHeader";
+import PageHeader from "./common/PageHeader";
 
 const Home = () => {
   return (

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/auth.context";
+import { useAuth } from "../contexts/auth.context";
 import { useEffect } from "react";
 
 const SignOut = ({ redirect = "/" }) => {

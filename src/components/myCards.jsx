@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PageHeader from "./PageHeader";
+import PageHeader from "./common/PageHeader";
 
 const MyCards = () => {
   return (
@@ -20,5 +20,5 @@ const MyCards = () => {
     </>
   );
 };
-
+ 
 export default MyCards;

@@ -1,25 +1,25 @@
-import { validateFormikUsingJoi } from "../../utils/validateFormikUsingJoi";
-import Input from "./input";
-import PageHeader from "./PageHeader";
+import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
+import Input from "./common/input";
+import PageHeader from "./common/PageHeader";
 
-import usersService from "../../services/usersService";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
-import { useAuth } from "../../contexts/auth.context";
+import { useAuth } from "../contexts/auth.context";
 
-const Login = ({ redirect }) => {
+const SignUp = ({ redirect }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
 
-  const { user, login } = useAuth();
+  const { signUp, user } = useAuth();
 
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
       email: "",
+      name: "",
       password: "",
     },
     validate: validateFormikUsingJoi({
@@ -28,12 +28,12 @@ const Login = ({ redirect }) => {
         .max(255)
         .required()
         .email({ tlds: { allow: false } }),
+      name: Joi.string().min(6).max(255).required(),
       password: Joi.string().min(6).max(1024).required(),
     }),
-
     async onSubmit(values) {
       try {
-        await login(values);
+        await signUp({ ...values, biz: false });
         if (redirect) {
           navigate(redirect);
         }
@@ -51,7 +51,10 @@ const Login = ({ redirect }) => {
 
   return (
     <>
-      <PageHeader title="Login" description="Open a new account for free <3" />
+      <PageHeader
+        title="Sign Up"
+        description="Open a new account<3"
+      />
 
       <form onSubmit={form.handleSubmit}>
         {serverError && <div className="alert alert-danger">{serverError}</div>}
@@ -59,14 +62,20 @@ const Login = ({ redirect }) => {
         <Input
           {...form.getFieldProps("email")}
           type="email"
-          label="email"
+          label="Email"
           required
           error={form.touched.email && form.errors.email}
         />
-
+        <Input
+          {...form.getFieldProps("name")}
+          type="text"
+          label="Name"
+          required
+          error={form.touched.name && form.errors.name}
+        />
         <Input
           {...form.getFieldProps("password")}
-          type="text"
+          type="password"
           label="Password"
           required
           error={form.touched.password && form.errors.password}
@@ -74,7 +83,7 @@ const Login = ({ redirect }) => {
 
         <div className="my-2">
           <button disabled={!form.isValid} className="btn btn-primary">
-            login
+            Sign Up
           </button>
         </div>
       </form>
@@ -82,4 +91,4 @@ const Login = ({ redirect }) => {
   );
 };
 
-export default Login;
+export default SignUp;
