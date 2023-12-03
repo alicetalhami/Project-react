@@ -11,8 +11,10 @@ import SignUpBiz from "./components/signUpBiz";
 import MyCards from "./components/myCards";
 import ProtectedRoute from "./components/common/protectedRoute";
 
-import cardsService from "./services/cardService";
+import usersService from "./services/usersService";
 import CardsCreate from "./components/cardsCreate";
+import CardDelete from "./components/cardDelete";
+import CardsEdit from "./components/cardsEdit";
 
 
 
@@ -42,7 +44,27 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/my-cards/delete/:id"
+            element={
+              <ProtectedRoute onlyBiz>
+                <CardDelete />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/my-cards/edit/:id"
+            element={
+              <ProtectedRoute onlyBiz>
+                <CardsEdit />
+              </ProtectedRoute>
+            }
+          />
+
          
+
           <Route path="/Login" element={<Login redirect="/" />} />
           <Route path="/sign-up" element={<SignUp redirect="/sign-in" />} />
           <Route

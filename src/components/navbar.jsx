@@ -27,6 +27,15 @@ const NavBar = () => {
               </NavLink>
             </li>
 
+            {user?.biz && (
+              <li className="nav-item">
+                <NavLink to="/fav-cards" className="nav-link">
+                  Fav Cards
+                </NavLink>
+              </li>
+            )}
+            
+
             {user?.biz &&  (
               <li className="nav-item">
                 <NavLink to="/my-cards" className="nav-link">
@@ -35,13 +44,7 @@ const NavBar = () => {
               </li>
            )}
 
-              {user?.biz && (
-              <li className="nav-item">
-                <NavLink to="/fav-cards" className="nav-link">
-                  Fav Cards
-                </NavLink>
-              </li>
-            )}
+        
           </ul>
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">

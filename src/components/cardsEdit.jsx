@@ -2,16 +2,20 @@ import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
 import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useFormik } from "formik";
 import Joi from "joi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cardsService from "../services/cardsService";
+import { useCard } from "../hooks/useCard";
 
-const CardsCreate = () => {
+const CardsEdit = () => {
   const [serverError, setServerError] = useState("");
+
   const navigate = useNavigate();
+  const { id } = useParams();
+  const card = useCard(id);
 
   const form = useFormik({
     validateOnMount: true,
@@ -45,8 +49,8 @@ const CardsCreate = () => {
         if (bizImage) {
           body.bizImage = bizImage;
         }
-
-        await cardsService.createCard(body);
+        
+        await cardsService.updateCard(card._id, body);
         navigate("/my-cards");
       } catch (err) {
         if (err.response?.status === 400) {
@@ -56,9 +60,25 @@ const CardsCreate = () => {
     },
   });
 
+  useEffect(() => {
+    if (!card) {
+      return;
+    }
+
+    const { bizName, bizDescription, bizAddress, bizPhone, bizImage } = card;
+
+    form.setValues({
+      bizName,
+      bizDescription,
+      bizAddress,
+      bizPhone,
+      bizImage,
+    });
+  }, [card]);
+
   return (
     <>
-      <PageHeader title="Create Card" description="Create Card" />
+      <PageHeader title="Edit Card" description="Edit Card" />
 
       <form onSubmit={form.handleSubmit}>
         {serverError && <div className="alert alert-danger">{serverError}</div>}
@@ -108,4 +128,4 @@ const CardsCreate = () => {
   );
 };
 
-export default CardsCreate;
+export default CardsEdit;
