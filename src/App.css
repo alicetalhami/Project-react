@@ -1,0 +1,11 @@
+.navbar {
+    background-color: var(--body_background);
+    color: var(--body_background);
+}
+
+
+.App-link {
+    color: var(--link_color);
+}
+
+
