@@ -10,7 +10,10 @@ import SignOut from "./components/signout";
 import SignUpBiz from "./components/signUpBiz";
 import MyCards from "./components/myCards";
 import ProtectedRoute from "./components/common/protectedRoute";
-import FavCards from "./components/favCards";
+
+import cardsService from "./services/cardService";
+import CardsCreate from "./components/cardsCreate";
+
 
 
 function App() {
@@ -23,20 +26,29 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/my-cards" element={
-           <ProtectedRoute>
-          <MyCards />
-          </ProtectedRoute>
-          } />
-          <Route path="/fav-cards" element={
-         <ProtectedRoute onlyBiz>
-          <FavCards />
-          </ProtectedRoute>
-
-          } />
-          <Route path="/login" element={<Login redirect="/" />} />
-          <Route path="/sign-up" element={<SignUp redirect="/login" />} />
-          <Route path="/sign-up-biz"element={<SignUpBiz redirect="/my-cards" />}/>
+          <Route
+            path="/my-cards"
+            element={
+              <ProtectedRoute onlyBiz>
+                <MyCards />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create-card"
+            element={
+              <ProtectedRoute onlyBiz>
+                <CardsCreate />
+              </ProtectedRoute>
+            }
+          />
+         
+          <Route path="/Login" element={<Login redirect="/" />} />
+          <Route path="/sign-up" element={<SignUp redirect="/sign-in" />} />
+          <Route
+            path="/sign-up-biz"
+            element={<SignUpBiz redirect="/my-cards" />}
+          />
           <Route path="/sign-out" element={<SignOut />} redirect="/" />
         </Routes>
       </main>

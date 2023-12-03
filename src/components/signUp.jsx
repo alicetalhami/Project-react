@@ -1,6 +1,6 @@
 import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
 import Input from "./common/input";
-import PageHeader from "./common/PageHeader";
+import PageHeader from "./common/pageHeader";
 
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -51,10 +51,7 @@ const SignUp = ({ redirect }) => {
 
   return (
     <>
-      <PageHeader
-        title="Sign Up"
-        description="Open a new account<3"
-      />
+      <PageHeader title="Sign Up" description="Open a new account<3" />
 
       <form onSubmit={form.handleSubmit}>
         {serverError && <div className="alert alert-danger">{serverError}</div>}

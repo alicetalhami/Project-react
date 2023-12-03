@@ -24,7 +24,7 @@ export function getCard(id) {
   return httpService.get(`/cards/${id}`);
 }
 
-export function deleteCard(id) {
+export function deleteCard(id,) {
   return httpService.delete(`/cards/${id}`);
 }
 

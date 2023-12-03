@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PageHeader from "./common/PageHeader";
+import PageHeader from "./common/pageHeader";
 
 const FavCards = () => {
   return (
@@ -20,5 +20,5 @@ const FavCards = () => {
     </>
   );
 };
- 
+
 export default FavCards;

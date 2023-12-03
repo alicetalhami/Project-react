@@ -1,0 +1,45 @@
+@local=http://localhost:3900
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTZiNmMwZDliMGQ3OWFiNzQwM2UwNzYiLCJiaXoiOnRydWUsImlhdCI6MTcwMTUzODgyOX0.zmWCbqvCPdIjDHRJ2iY5xeAQB2I7DNqlsvJen3f2uhE
+
+
+### Register
+POST {{local}}/api/users
+content-type: application/json
+
+
+{
+    "name": "Alice",
+    "email": "alice99@gmail.com",
+    "password": "asd123",
+    "biz": true
+}
+
+### Authentication (login)
+
+POST {{local}}/api/auth
+content-Type: application/json
+
+{
+    "email": "alice99@gmail.com",
+    "password": "asd123"
+}
+
+### Autherization
+
+GET {{local}}/api/users/me
+x-auth-token: {{token}}
+
+### Create Card
+POST {{local}}/api/cards
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "bizName": "cards design",
+    "bizDescription": "example for design ideas",
+    "bizAddress": "test 1",
+    "bizPhone": "059999999",
+    "bizImage": "https://cdn.pixabay.com/photo/2015/05/13/22/22/workspace-766045_1280.jpg"
+
+}
