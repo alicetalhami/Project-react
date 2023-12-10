@@ -14,3 +14,9 @@
     transform: all 0.3s ease-in-out;
 }
 
+.footer-link {
+    text-decoration: none;
+    color: darkred; 
+    block-size: 5;
+  
+  }

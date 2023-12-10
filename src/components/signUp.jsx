@@ -51,7 +51,10 @@ const SignUp = ({ redirect }) => {
 
   return (
     <>
-      <PageHeader title="Sign Up" description="Open a new account<3" />
+      <PageHeader
+        title="Sign Up"
+        description="Open a new account now!!! It is free you yammani!!"
+      />
 
       <form onSubmit={form.handleSubmit}>
         {serverError && <div className="alert alert-danger">{serverError}</div>}
