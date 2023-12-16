@@ -25,6 +25,10 @@ const SignUp = ({ redirect }) => {
       phone: "",
       password: "",
       state: "",
+      country: "",
+      city: "",
+      street:"",
+      houseNumber: "",
     },
     validate: validateFormikUsingJoi({
       email: Joi.string()
@@ -38,6 +42,10 @@ const SignUp = ({ redirect }) => {
       password: Joi.string().min(6).max(1024).required(),
       phone: Joi.string().regex(/^[\d\- ]{9,11}$/).required(),
       state: Joi.string().min(2).max(256).required(),
+      country: Joi.string().min(2).max(256).required(),
+      city: Joi.string().min(2).max(256).required(),
+      street: Joi.string().min(2).max(256).required(),
+      houseNumber: Joi.string().min(2).max(256).required(),
     }),
     async onSubmit(values) {
       try {
@@ -119,6 +127,34 @@ const SignUp = ({ redirect }) => {
           label="state"
           required
           error={form.touched.state && form.errors.state}
+        />
+             <Input
+          {...form.getFieldProps("country")}
+          type="text"
+          label="country"
+          required
+          error={form.touched.country && form.errors.country}
+        />
+         <Input
+          {...form.getFieldProps("city")}
+          type="text"
+          label="city"
+          required
+          error={form.touched.city && form.errors.city}
+        />
+         <Input
+          {...form.getFieldProps("street")}
+          type="text"
+          label="street"
+          required
+          error={form.touched.street && form.errors.street}
+        />
+         <Input
+          {...form.getFieldProps("houseNumber")}
+          type="text"
+          label="houseNumber"
+          required
+          error={form.touched.houseNumber && form.errors.houseNumber}
         />
         <div className="my-2">
           <button disabled={!form.isValid} className="btn btn-primary">
