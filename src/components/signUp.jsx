@@ -152,7 +152,7 @@ const SignUp = ({ redirect }) => {
          <Input
           {...form.getFieldProps("houseNumber")}
           type="text"
-          label="houseNumber"
+          label="house Number"
           required
           error={form.touched.houseNumber && form.errors.houseNumber}
         />
