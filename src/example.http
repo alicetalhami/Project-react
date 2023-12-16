@@ -8,10 +8,13 @@ POST {{local}}/api/users
 content-type: application/json
 
 
+
 {
-    "name": "Alice",
-    "email": "alice99@gmail.com",
+    "firstName": "Alice",
+    "middleName": "ttledd",
+    "email": "alice9ddd9@gmail.com",
     "password": "asd123",
+    "state": "hifa"
     "biz": true
 }
 
